@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://sheehan-tuchuang.oss-cn-beijing.aliyuncs.com/note/all/Snipaste_2021-07-11_13-12-28.png">
 <meta property="og:image" content="https://sheehan-tuchuang.oss-cn-beijing.aliyuncs.com/note/all/Snipaste_2021-07-11_13-12-46.png">
 <meta property="article:published_time" content="2021-07-11T05:32:13.000Z">
-<meta property="article:modified_time" content="2021-07-11T08:47:18.705Z">
+<meta property="article:modified_time" content="2021-07-11T08:54:58.791Z">
 <meta property="article:author" content="Sheehan">
 <meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="git">
@@ -141,7 +141,10 @@ mjx-container[display="true"] + br {
 <p>之前一直使用的是ssh的方式来通过树莓派git-server同步代码，端口映射后可以在校园网下面同步所有的代码。用了一段时间是没有问题的，但是我在同步cosypose的仓库代码的时候，一直git lfs authentication 失败，其实是因为仓库里面含有3D的模型文件，属于大文件，需要使用git-lfs插件。git-lfs的issue下面说是因为ssh的方式是不支持git的gitlfs插件的。不过说来也怪，在ubuntu电脑下面是没有问题的，在win下面clone代码的时候都是出问题的。这样就在考虑搭建http方式的git-server，失败了几次后发现自己还是不太会这方面的配置，但是偶然发现了gitea这个占用小的git服务器，是编译好的二进制应用，我现在了解到的其与gitlab比较大的差别是在权限管理上面的缺乏。在大公司中是非常重视这方面的权限，但是在我们个人小规模使用的话，就不需要管这些了。</p>
 <p><img src="https://sheehan-tuchuang.oss-cn-beijing.aliyuncs.com/note/all/Snipaste_2021-07-11_16-46-19.png" loading="lazy"></p>
 <span id="more"></span>
-<p>下面是我实践过的写的比较全，可以搭建起来的服务器教程，这个是创建了新用户git，在home/git/文件夹下创建.gitea文件夹并进行安装配置的，之前还看到在/srv/.gitea下配置的，看着比较正规的样子。<br>转载自 <a target="_blank" rel="noopener" href="https://0x1.ink/p/17">https://0x1.ink/p/17</a><br><code>Gitea</code> 是一个开源社区驱动的<strong>轻量级代码托管</strong>解决方案，后端采用 Go 编写，采用 MIT 许可发布，通过二进制文件独立分发，可以运行在任何 Go 能够编译的平台：Windows，macOS，Linux，ARM，Mips 。Gitea的最低配置要求很低，甚至可以在树莓派上轻松上运行，此外Gitea还添加了 PWA 支持，你可以把它作为一个应用添加到桌面，最重要的是，Gitea还是开源的，并且还加入了中文本地化支持！官方中文文档</p>
+<p>下面是我实践过的写的比较全，可以搭建起来的服务器教程，这个是创建了新用户git，在home/git/文件夹下创建.gitea文件夹并进行安装配置的，之前还看到在/srv/.gitea下配置的，看着比较正规的样子。</p>
+<p><strong>转载自 <a target="_blank" rel="noopener" href="https://0x1.ink/p/17">https://0x1.ink/p/17</a></strong> </p>
+<hr>
+<p><code>Gitea</code> 是一个开源社区驱动的<strong>轻量级代码托管</strong>解决方案，后端采用 Go 编写，采用 MIT 许可发布，通过二进制文件独立分发，可以运行在任何 Go 能够编译的平台：Windows，macOS，Linux，ARM，Mips 。Gitea的最低配置要求很低，甚至可以在树莓派上轻松上运行，此外Gitea还添加了 PWA 支持，你可以把它作为一个应用添加到桌面，最重要的是，Gitea还是开源的，并且还加入了中文本地化支持！官方中文文档</p>
 <p>Gitea有Docker，二进制，Service等安装方式，本例中采用二进制，因为是自建小型低功耗服务器，用路由器的的电源供电，Docker消耗资源多，这个方式略耗电（小声）。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>基于二进制安装非常简单<br>前往下载页面，在master分支下，寻找对应平台，并复制下载链接，执行以下命令即可，这里以Ubuntu19.04为例，程序安装路径为 ~/.gitea</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">mkdir .gitea&amp;&amp;cd .gitea
