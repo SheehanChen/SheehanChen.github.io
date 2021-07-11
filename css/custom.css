@@ -1,0 +1,15 @@
+/* .icons>.icon {
+    margin: 24px 24px;
+    border: 1px solid red;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+ } */
+.icon-steam {
+   /* display: inline-block; */
+   width: 24px; height: 24px;
+   background-image: url(https://sheehan-tuchuang.oss-cn-beijing.aliyuncs.com/note/all/steam-line.png);
+   /* background-color: transparent; */
+   /* background-blend-mode: lighten; */
+   /* background-size: 100%; */
+}
